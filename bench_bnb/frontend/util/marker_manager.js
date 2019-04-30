@@ -6,6 +6,20 @@ export default class MarkerManager {
 
     updateMarkers(benches) {
         console.log('updating markers...');
+        benches.map((bench) => this.createMarkerFromBench(bench));
+        let benchesObject = {};
+        benches.forEach( (bench) => benchesObject[bench.id] = bench);
+        for (let marker in this.markers) {
+            if (!(marker in benchesObject)) {
+                this.removeMarker(marker);
+            }
+        }
+        console.log(this.markers);
+    }
+
+    removeMarker(marker) {
+        this.markers[marker].setMap(null);
+        delete this.markers[marker];
     }
 
     createMarkerFromBench(bench) {

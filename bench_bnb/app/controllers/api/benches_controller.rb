@@ -1,6 +1,8 @@
 class Api::BenchesController < ApplicationController
     def index 
-        @benches = Bench.all 
+        max_seating = params[:filters][:maxSeating] || Float::INFINITY 
+        min_seating = params[:filters][:minSeating] || 0 
+        @benches = Bench.in_bounds(params[:filters][:bounds]).where(seating: min_seating...max_seating)
     end
 
     def create 
@@ -14,6 +16,6 @@ class Api::BenchesController < ApplicationController
 
     private 
     def bench_params
-        params.require(:bench).permit(:description, :lat, :lng)
+        params.require(:bench).permit(:description, :seating, :lat, :lng, :maxSeating, :minSeating)
     end
 end

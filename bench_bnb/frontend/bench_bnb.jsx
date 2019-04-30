@@ -4,7 +4,8 @@ import Root from './components/root';
 import * as SessionAPIUtil from './util/session_api_util';
 import configureStore from './store/store';
 import { loginUser, logout, signup } from './actions/session_actions';
-import { fetchBenches } from './actions/bench_actions';
+// import { fetchBenches } from './actions/bench_actions';
+import { fetchBenches } from './util/bench_api_util';
 
 document.addEventListener('DOMContentLoaded', () => {
     const root = document.getElementById('root');
@@ -21,9 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         store = configureStore();
     }
-    window.loginUser = loginUser;
-    window.logout = logout; 
-    window.signup = signup;
+    // window.loginUser = loginUser;
+    // window.logout = logout; 
+    // window.signup = signup;
     window.fetchBenches = fetchBenches;
     window.getState = store.getState;
     window.dispatch = store.dispatch;

@@ -4,7 +4,6 @@ import BenchIndexItem from './BenchIndexItem';
 class BenchIndex extends React.Component {
 
     componentDidMount() {
-        this.props.fetchBenches(); 
     }
 
     render() {
